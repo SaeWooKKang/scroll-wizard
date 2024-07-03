@@ -1,0 +1,11 @@
+{
+  "name": "scroll-wizard",
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {}
+}
