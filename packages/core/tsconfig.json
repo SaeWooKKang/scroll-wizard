@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                              
+    "declaration": true,
+    "module": "CommonJS",                              
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
+    "strict": true,                                      
+    "skipLibCheck": true,  
+     "outDir": "dist",
+     "typeRoots": ["./node_modules/@types"],
+     "composite": true
+  },
+  "include": ["./src/index.ts"]
+}

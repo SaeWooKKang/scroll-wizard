@@ -1,7 +1,18 @@
 {
   "name": "scroll-wizard",
   "scripts": {
+    "build": "tsc",
     "test": "vitest"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
