@@ -4,8 +4,12 @@
     "test": "vitest"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.6",
+    "jsdom": "^24.1.0",
     "typescript": "^5.5.3",
     "vitest": "^1.6.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/jsdom": "^21.1.7"
+  }
 }
