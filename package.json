@@ -1,0 +1,7 @@
+{
+  "name": "scroll-wizard5",
+  "packageManager": "yarn@4.3.1",
+  "workspaces": [
+    "packages/*"
+  ]
+}
