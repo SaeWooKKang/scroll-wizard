@@ -13,3 +13,5 @@
 .pnp.*
 
 .todo
+
+node_modules/
