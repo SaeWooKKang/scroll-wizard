@@ -10,9 +10,9 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",

@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES6",                              
+    "target": "ESNext",                              
     "declaration": true,
-    "module": "CommonJS",                              
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "lib": [
       "es5",
       "es6",
@@ -12,7 +13,8 @@
     "skipLibCheck": true,  
      "outDir": "dist",
      "typeRoots": ["./node_modules/@types"],
-     "composite": true
+     "composite": true,
+     "rootDir": "src",
   },
-  "include": ["./src/index.ts"]
+  "include": ["src/**/*"], 
 }
