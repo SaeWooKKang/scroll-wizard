@@ -1,8 +1,25 @@
 const add = (a: number, b: number): number => a + b;
 const minus = (a: number, b: number): number => a - b;
 
-export const getScrollWidth = (target: HTMLElement, document: Document): number => {
+export const getDocumentScrollWidth = (): number => {
+  if (!window || !document) {
+    throw new Error('window or document is not defined.');
+  }
+
+  return window.innerWidth - document.documentElement.clientWidth;
+}
+
+export const getScrollWidth = (target: HTMLElement): number => {
+  if (!window || !document) {
+    throw new Error('window or document is not defined.');
+  }
+
   const clone = target.cloneNode(true) as HTMLElement;
+  const computedStyle = window.getComputedStyle(target)
+
+  const borderRight = parseInt(computedStyle.borderRight) || 0
+  const borderLeft = parseInt(computedStyle.borderLeft) || 0
+  const borderWidth = add(borderRight, borderLeft)
   
   clone.style.visibility = 'hidden';
   clone.style.position = 'absolute';
@@ -12,23 +29,28 @@ export const getScrollWidth = (target: HTMLElement, document: Document): number 
   clone.style.overflow = 'scroll'; 
   
   document.body.appendChild(clone);
-  const scrollBarWidth = clone.offsetWidth - clone.clientWidth;
+
+  const scrollBarWidth = clone.offsetWidth - clone.clientWidth - borderWidth;
   
   document.body.removeChild(clone);
   
   return scrollBarWidth;
 };
 
-export const getOriginalPaddingRight = (target: HTMLElement): number => {
+export const getPaddingRight = (target: HTMLElement): number => {
+  if (!window) {
+    throw new Error('window is not defined.');
+  }
+
   const paddingRight = window.getComputedStyle(target).paddingRight;
 
   return parseInt(paddingRight) || 0;
 };
 
-export const scrollWizard = (target: HTMLElement, document: Document) => {
+export const scrollWizard = (target: HTMLElement) => {
   const hold = () => {
     try {
-      const computedPaddingRight = add(getScrollWidth(target, document), getOriginalPaddingRight(target))
+      const computedPaddingRight = add(getScrollWidth(target), getPaddingRight(target))
 
       target.style.overflow = 'hidden'
       target.style.paddingRight = `${computedPaddingRight}px`
@@ -43,10 +65,10 @@ export const scrollWizard = (target: HTMLElement, document: Document) => {
 
   const release = () => {
     try {
-      const computedPaddingRight = minus(getOriginalPaddingRight(target), getScrollWidth(target, document))
+      const beforePaddingRight = minus(getPaddingRight(target), getScrollWidth(target))
 
       target.style.overflow = 'auto'
-      target.style.paddingRight = `${computedPaddingRight}px`
+      target.style.paddingRight = `${beforePaddingRight}px`
 
       return true
     } catch (e) {
