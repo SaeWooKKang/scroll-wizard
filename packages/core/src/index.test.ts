@@ -1,6 +1,5 @@
 import { describe, expect, it, test } from 'vitest'
 import {  getPaddingRight, getScrollWidth ,getDocumentScrollWidth} from '.';
-import { JSDOM } from 'jsdom';
 
 /**
  * @link https://github.com/jsdom/jsdom/issues/2310
@@ -9,7 +8,7 @@ import { JSDOM } from 'jsdom';
 test('getOriginalPaddingRight should return the correct padding right value', () => {
   const mockElement = document.createElement('div');
   mockElement.style.paddingRight = '10px';
-
+  
   const originalPaddingRight = getPaddingRight(mockElement);
 
   expect(originalPaddingRight).toBe(10);

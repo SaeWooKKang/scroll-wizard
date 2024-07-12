@@ -15,10 +15,10 @@ export const getScrollWidth = (target: HTMLElement): number => {
   }
 
   const clone = target.cloneNode(true) as HTMLElement;
-  const computedStyle = window.getComputedStyle(target)
+  
 
-  const borderRight = parseInt(computedStyle.borderRight) || 0
-  const borderLeft = parseInt(computedStyle.borderLeft) || 0
+  const borderRight = parseInt(clone.style.borderRight) || 0
+  const borderLeft = parseInt(clone.style.borderLeft) || 0
   const borderWidth = add(borderRight, borderLeft)
   
   clone.style.visibility = 'hidden';
@@ -42,9 +42,7 @@ export const getPaddingRight = (target: HTMLElement): number => {
     throw new Error('window is not defined.');
   }
 
-  const paddingRight = window.getComputedStyle(target).paddingRight;
-
-  return parseInt(paddingRight) || 0;
+  return parseInt(target.style.paddingRight) || 0;
 };
 
 export const scrollWizard = (target: HTMLElement) => {

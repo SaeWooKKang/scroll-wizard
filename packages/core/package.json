@@ -3,7 +3,8 @@
   "version": "0.0.1-alpha",
   "scripts": {
     "build": "tsc",
-    "test": "vitest"
+    "test": "vitest",
+    "test:browser": "vitest"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -19,11 +20,11 @@
     }
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.3.1",
     "@testing-library/jest-dom": "^6.4.6",
-    "jsdom": "^24.1.0",
+    "@vitest/browser": "^2.0.2",
+    "playwright": "^1.45.1",
     "typescript": "^5.5.3",
-    "vitest": "^1.6.0",
-    "@types/jsdom": "^21.1.7"
-  },
-  "dependencies": {}
+    "vitest": "^2.0.2"
+  }
 }
