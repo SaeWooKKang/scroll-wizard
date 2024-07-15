@@ -9,17 +9,39 @@ export const getDocumentScrollWidth = (): number => {
   return window.innerWidth - document.documentElement.clientWidth;
 }
 
+export const getBorderWidth = (target: HTMLElement): number => {
+  const {borderRightWidth, borderLeftWidth} = window.getComputedStyle(target)
+  const borderWidth = parseInt(borderRightWidth, 10 || 0) + parseInt(borderLeftWidth, 10) || 0
+
+  return borderWidth
+}
+
+export const getPaddingRight = (target: HTMLElement): number => {
+  if (!window) {
+    throw new Error('window is not defined.');
+  }
+
+  return parseInt(target.style.paddingRight) || 0;
+};
+
+export const hasScrollBar = (target: HTMLElement): boolean => {
+  if (!window) {
+    throw new Error('window is not defined.');
+  }
+
+  return (target.offsetWidth - getBorderWidth(target)) !== target.clientWidth
+}
+
 export const getScrollWidth = (target: HTMLElement): number => {
   if (!window || !document) {
     throw new Error('window or document is not defined.');
   }
 
-  const clone = target.cloneNode(true) as HTMLElement;
-  
+  if (!hasScrollBar(target)) {
+    return 0;
+  }
 
-  const borderRight = parseInt(clone.style.borderRight) || 0
-  const borderLeft = parseInt(clone.style.borderLeft) || 0
-  const borderWidth = add(borderRight, borderLeft)
+  const clone = target.cloneNode(true) as HTMLElement;
   
   clone.style.visibility = 'hidden';
   clone.style.position = 'absolute';
@@ -30,20 +52,13 @@ export const getScrollWidth = (target: HTMLElement): number => {
   
   document.body.appendChild(clone);
 
-  const scrollBarWidth = clone.offsetWidth - clone.clientWidth - borderWidth;
+  const scrollBarWidth = clone.offsetWidth - clone.clientWidth - getBorderWidth(clone);
   
   document.body.removeChild(clone);
   
   return scrollBarWidth;
 };
 
-export const getPaddingRight = (target: HTMLElement): number => {
-  if (!window) {
-    throw new Error('window is not defined.');
-  }
-
-  return parseInt(target.style.paddingRight) || 0;
-};
 
 export const scrollWizard = (target: HTMLElement) => {
   const hold = () => {

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitest/config'
-
+import { VIEWPORT } from './src/const';
 
 export default defineConfig({
 
@@ -10,6 +10,7 @@ export default defineConfig({
       provider: 'playwright',
       // https://playwright.dev
       providerOptions: {},
+      viewport: VIEWPORT,      
     },
   },
 })
