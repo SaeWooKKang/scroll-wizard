@@ -1,6 +1,6 @@
 {
   "name": "scroll-wizard",
-  "version": "0.0.1",
+  "version": "0.0.1-beta",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "yarn clean && tsc",
