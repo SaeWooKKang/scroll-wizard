@@ -2,7 +2,6 @@ import { defineConfig } from 'vitest/config'
 import { VIEWPORT } from './src/const';
 
 export default defineConfig({
-
   test: {
     browser: {
       enabled: true,
@@ -12,5 +11,8 @@ export default defineConfig({
       providerOptions: {},
       viewport: VIEWPORT,      
     },
+    coverage: {
+      provider: 'istanbul',
+    }
   },
 })
