@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, test } from 'vitest'
 import { getByText, screen } from '@testing-library/dom'
-import {  getPaddingRight, getScrollWidth ,getDocumentScrollWidth, hasScrollBar} from '.';
+import {  getPaddingRight, getScrollWidth ,getDocumentScrollWidth, hasScrollBar, scrollWizard} from '.';
 import { VIEWPORT } from './const';
 
 beforeEach(() => {
@@ -300,6 +300,27 @@ describe('getScrollWidth', () => {
     URL.revokeObjectURL(cssURL);
   })
  })
+
+describe('scrollWizard', () => {
+  const container = document.createElement('div');
+  container.setAttribute('data-testid', 'container');
+  container.style.width = '100px';
+  container.style.height = '100px';
+  container.style.overflow = 'scroll';
+  container.style.padding = '10px';
+  document.body.appendChild(container);
+  
+  const $container = screen.queryByTestId('container')!
+  const {hold,release} = scrollWizard($container);
+
+  test('The return value of the Hold function must be True.', async () => {
+    expect(hold()).toBe(true);
+  })
+
+  test('The return value of the release function must be True.', async () => {
+    expect(release()).toBe(true);
+  })
+})
 
 
 
