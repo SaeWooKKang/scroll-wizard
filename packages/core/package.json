@@ -2,7 +2,8 @@
   "name": "scroll-wizard",
   "version": "0.0.1-alpha",
   "scripts": {
-    "build": "tsc",
+    "clean": "rm -rf dist",
+    "build": "yarn clean && tsc",
     "test:browser": "vitest",
     "coverage": "vitest run --coverage"
   },
