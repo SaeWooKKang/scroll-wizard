@@ -2,9 +2,6 @@
   "references": [
     {
       "path": "./packages/core"
-    },
-    {
-      "path": "./packages/e2e"
     }
   ]
 }
