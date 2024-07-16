@@ -7,7 +7,7 @@ export const getDocumentScrollWidth = (): number => {
 
 export const getBorderWidth = (target: HTMLElement): number => {
   const {borderRightWidth, borderLeftWidth} = window.getComputedStyle(target)
-  const borderWidth = parseInt(borderRightWidth, 10 || 0) + parseInt(borderLeftWidth, 10) || 0
+  const borderWidth = (parseInt(borderRightWidth, 10) || 0) + (parseInt(borderLeftWidth, 10) || 0)
 
   return borderWidth
 }
@@ -43,31 +43,42 @@ export const getScrollWidth = (target: HTMLElement): number => {
   return scrollBarWidth;
 };
 
-
-export const scrollWizard = (target: HTMLElement) => {
-  if (typeof window === 'undefined' || !target) {
-    throw new Error('scrollWizard requires a browser environment and a valid target element.');
+const checkEnvironment = () => {
+  if (typeof window === 'undefined') {
+    throw new Error('scrollWizard requires a browser environment');
   }
+};
+
+/**
+ * @summary Controls the top scroll of the document by default. 
+ * @param target - If you use target, the value of the box-sizing property should be border-box.
+ */
+export const scrollWizard = (target?: HTMLElement) => {
+  const element = target ?? document.body;
+  const originalPaddingRight = getPaddingRight(element);
+
+  const setStyle = (overflowY: string, paddingRight: string) => {
+    element.style.overflowY = overflowY;
+    element.style.paddingRight = paddingRight;
+  };
 
   const hold = () => {
-    const computedPaddingRight = add(getScrollWidth(target), getPaddingRight(target))
+    checkEnvironment();
 
-    target.style.overflow = 'hidden'
-    target.style.paddingRight = `${computedPaddingRight}px`
+    const scrollWidth = target ? getScrollWidth(target) : getDocumentScrollWidth();
+    const computedPaddingRight = `${add(scrollWidth, originalPaddingRight)}px`;
+    setStyle('hidden', computedPaddingRight);
 
-    return true
-  }
+    return true;
+  };
 
   const release = () => {
-    const beforePaddingRight = minus(getPaddingRight(target), getScrollWidth(target))
+    checkEnvironment();
 
-    target.style.overflow = 'auto'
-    target.style.paddingRight = `${beforePaddingRight}px`
+    setStyle('auto', originalPaddingRight + 'px');
 
-    return true
-  }
+    return true;
+  };
 
-  return {
-    hold, release
-  }
-}
+  return { hold, release };
+};

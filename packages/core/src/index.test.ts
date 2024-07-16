@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, test } from 'vitest'
 import { getByText, screen } from '@testing-library/dom'
-import {  getPaddingRight, getScrollWidth ,getDocumentScrollWidth, hasScrollBar, scrollWizard} from '.';
+import {  getPaddingRight, getScrollWidth ,getDocumentScrollWidth, hasScrollBar, scrollWizard, getBorderWidth} from '.';
 import { VIEWPORT } from './const';
 
 beforeEach(() => {
@@ -160,6 +160,37 @@ test('If the area of the padding is 10, the getPaddingRight function must return
 
   expect(originalPaddingRight).toBe(10);
 });
+
+describe('getBorderWidth', () => {
+  test('If the border width is 10px on both sides, the getBorderWidth function must return 20.', async () => {
+    // Given
+    const container = document.createElement('div');
+    container.setAttribute('data-testid', 'container');
+    container.style.border = '10px solid black';
+    document.body.appendChild(container);
+
+    // When
+     const $container = screen.queryByTestId('container')
+  
+    // Then
+    expect(getBorderWidth($container!)).toBe(20);
+  })
+
+  test('If the border width is 10px on both sides and box-sizing: border-box, the getBorderWidth function must return 20.', async () => {
+    // Given
+    const container = document.createElement('div');
+    container.setAttribute('data-testid', 'container');
+    container.style.border = '10px solid black';
+    container.style.boxSizing = 'border-box';
+    document.body.appendChild(container);
+
+    // When
+    const $container = screen.queryByTestId('container')!
+  
+    // Then
+    expect(getBorderWidth($container)).toBe(20);
+  })
+})
 
 describe('hasScrollBar', () => {
   test('If there is no scroll area, hasScrollBar function must return false.', () => {
@@ -321,6 +352,7 @@ describe('scrollWizard', () => {
     expect(release()).toBe(true);
   })
 })
+
 
 
 
