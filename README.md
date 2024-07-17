@@ -1,4 +1,4 @@
-![scroll-wizard-og]('./og.webp)
+![scroll-wizard-og]('og.webp)
 
 # scroll-wizard
 
