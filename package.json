@@ -1,6 +1,11 @@
 {
   "name": "root",
   "packageManager": "yarn@4.3.1",
+  "private": false,
+  "scripts": {
+    "changeset:version": "yarn changeset version",
+    "changeset:publish": "yarn changeset publish"
+  },
   "workspaces": [
     "packages/*"
   ],

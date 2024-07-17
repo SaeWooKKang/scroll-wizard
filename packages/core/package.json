@@ -1,6 +1,6 @@
 {
   "name": "scroll-wizard",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Enchant your web scrolling with ease!",
   "keywords": [
     "scroll",
@@ -12,6 +12,9 @@
     "url": "https://github.com/SaeWooKKang/scroll-wizard.git"
   },
   "bugs": "https://github.com/SaeWooKKang/scroll-wizard/issues",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
