@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@changesets/cli": "^2.27.7",
     "typescript": "^5.5.3"
   }
 }
