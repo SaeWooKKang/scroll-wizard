@@ -11,6 +11,35 @@ afterEach(() => {
   document.body.innerHTML = '';
 });
 
+/**
+ * @description There are two types of scroll bars.
+1. Classical scrollbars 
+2. Overlay scrollbars
+
+Overlay scrollbar does not take up any space, please refer to the following [classic and overlay scrollbars](https://developer.chrome.com/docs/css-ui/scrollbar-styling#classic_and_overlay_scrollbars) for more information.
+ */
+const checkOverlayScrollbarEnabled = () => {
+  const container = document.createElement('div');
+
+  container.id =  'container'
+  container.style.width = '100px';
+  container.style.overflow = 'scroll';
+  container.style.padding = '10px';
+
+  document.body.appendChild(container);
+
+  const $div: HTMLDivElement | null = document.querySelector('#container') 
+
+  const result =  $div?.clientWidth == $div?.offsetWidth
+
+  document.body.removeChild(container);
+
+  return result
+}
+
+const isOverlayScrollbarEnabled = checkOverlayScrollbarEnabled()
+
+
 
 describe('clientWidth', () => {
   test('inline element clientWidth is unconditionally zero.', async () => {
@@ -61,7 +90,7 @@ describe('clientWidth', () => {
     expect($root?.clientWidth).toBe(100);
   })
 
-  test('If there is a scroll area, the scroll area should be excluded.', async () => {
+  test.skipIf(isOverlayScrollbarEnabled)('If there is a scroll area, the scroll area should be excluded.', async () => {
     // Given
     const container = document.createElement('div');
     container.setAttribute('data-testid', 'container');
@@ -131,7 +160,7 @@ describe('offsetWidth', () => {
   })
 })
 
-test('If there is a scroll area, offsetWidth !== clientWidth', async () => {
+test.skipIf(isOverlayScrollbarEnabled)('If there is a scroll area, offsetWidth !== clientWidth', async () => {
   // Given
   const container = document.createElement('div');
   container.setAttribute('data-testid', 'container');
@@ -152,7 +181,7 @@ test('viewport width, height is same width vitest.config viewport size', async (
   expect(window.innerHeight).toBe(VIEWPORT.height);
 })
 
-test('If the area of the padding is 10, the getPaddingRight function must return 10.', () => {
+test.skipIf(isOverlayScrollbarEnabled)('If the area of the padding is 10, the getPaddingRight function must return 10.', () => {
   const mockElement = document.createElement('div');
   mockElement.style.paddingRight = '10px';
   
@@ -193,7 +222,7 @@ describe('getBorderWidth', () => {
 })
 
 describe('hasScrollBar', () => {
-  test('If there is no scroll area, hasScrollBar function must return false.', () => {
+  test.skipIf(isOverlayScrollbarEnabled)('If there is no scroll area, hasScrollBar function must return false.', () => {
     // Given
     const container = document.createElement('div');
     container.setAttribute('data-testid', 'container');
@@ -207,7 +236,7 @@ describe('hasScrollBar', () => {
     expect(hasScrollBar($container as HTMLElement)).toBe(false);
   })
 
-  test('If there is no scroll area and has border, hasScrollBar function must return false.', () => {
+  test.skipIf(isOverlayScrollbarEnabled)('If there is no scroll area and has border, hasScrollBar function must return false.', () => {
     // Given
     const container = document.createElement('div');
     container.setAttribute('data-testid', 'container');
@@ -223,7 +252,7 @@ describe('hasScrollBar', () => {
     expect(hasScrollBar($container as HTMLElement)).toBe(false);
   })
 
-  test('If there is a scroll area, hasScrollBar function must return true.', () => {
+  test.skipIf(isOverlayScrollbarEnabled)('If there is a scroll area, hasScrollBar function must return true.', () => {
     // Given
     const container = document.createElement('div');
     container.setAttribute('data-testid', 'container');
@@ -239,8 +268,8 @@ describe('hasScrollBar', () => {
     expect(hasScrollBar($container as HTMLElement)).toBe(true);
   })
 })
-
-test('If the document has a scroll area, the return value of the getDocumentScrollWidth function must be greater than 0.', async () => {
+test.skipIf(isOverlayScrollbarEnabled)('If the document has a scroll area, the return value of the getDocumentScrollWidth function must be greater than 0.', async () => {
+  
   // Given
   const container = document.createElement('div');
   container.setAttribute('data-testid', 'container');
@@ -270,7 +299,7 @@ describe('getScrollWidth', () => {
     expect(getScrollWidth($container as HTMLElement)).toBe(0);
   })
   
-  test('getScrollWidth function must return the scrollbar width if there is a scroll area of the element', () => {
+  test.skipIf(isOverlayScrollbarEnabled)('getScrollWidth function must return the scrollbar width if there is a scroll area of the element', () => {
     // Given
     const container = document.createElement('div');
     container.setAttribute('data-testid', 'container');
@@ -319,7 +348,7 @@ describe('getScrollWidth', () => {
     document.body.appendChild(container);
 
     await new Promise((resolve) => setTimeout(resolve, 500));
-
+  
     // When
     const $container = screen.queryByTestId('container')
 
