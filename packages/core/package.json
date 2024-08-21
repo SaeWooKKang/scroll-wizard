@@ -6,6 +6,7 @@
     "scroll",
     "web"
   ],
+  "type": "module",
   "homepage": "https://github.com/SaeWooKKang/scroll-wizard",
   "repository": {
     "type": "git",

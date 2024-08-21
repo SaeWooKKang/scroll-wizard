@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ESNext",                              
-    "declaration": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "lib": [
-      "es5",
-      "es6",
-      "dom"
-    ],
+    /** host */
+    "module": "ESNext",
+    "moduleResolution": "Bundler", /** for vitest*/
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+
+    /** input */
+    "rootDir": "src",
     "strict": true,                                      
     "skipLibCheck": true,  
-     "outDir": "dist",
-     "typeRoots": ["./node_modules/@types"],
-     "composite": true,
-     "rootDir": "src",
+    "typeRoots": ["./node_modules/@types"],
+    "composite": true,
+
+    /** output */
+    "target": "ES2022",
+    "outDir": "dist",
+    "declaration": true,
   },
   "include": ["src/**/*"], 
+  "exclude": ["src/**/*.test.*"]
 }
