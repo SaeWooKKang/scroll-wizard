@@ -1,5 +1,11 @@
 # scroll-wizard
 
+## 0.0.5
+
+### Patch Changes
+
+- [`08d97a4`](https://github.com/SaeWooKKang/scroll-wizard/commit/08d97a4cf425e0cc25906416f2754a5269d33098) Thanks [@SaeWooKKang](https://github.com/SaeWooKKang)! - tsc wasn't recompiling due to outdated build info
+
 ## 0.0.4
 
 ### Patch Changes
