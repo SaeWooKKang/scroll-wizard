@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitest/config'
-import { VIEWPORT } from './src/const';
+import { VIEWPORT } from './src/const'
 
 export default defineConfig({
   test: {
@@ -9,10 +9,10 @@ export default defineConfig({
       provider: 'playwright',
       // https://playwright.dev
       providerOptions: {},
-      viewport: VIEWPORT,      
+      viewport: VIEWPORT,
     },
     coverage: {
       provider: 'istanbul',
-    }
+    },
   },
 })

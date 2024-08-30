@@ -4,7 +4,8 @@
   "description": "Enchant your web scrolling with ease!",
   "keywords": [
     "scroll",
-    "web"
+    "web",
+    "scrollbar"
   ],
   "type": "module",
   "homepage": "https://github.com/SaeWooKKang/scroll-wizard",
@@ -19,9 +20,12 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "yarn clean && tsc",
-    "test:browser": "vitest",
-    "coverage": "vitest run --coverage"
+    "build": "yarn tsc",
+    "ci": "yarn clean & yarn build",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+    "dev": "yarn vitest"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -32,11 +36,11 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
       "default": "./dist/index.js"
     }
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.15.4",
     "@testing-library/dom": "^10.3.1",
     "@testing-library/jest-dom": "^6.4.6",
     "@vitest/browser": "^2.0.3",

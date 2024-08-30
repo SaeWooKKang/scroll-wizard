@@ -1,22 +1,24 @@
 {
   "compilerOptions": {
-    /** host */
+    /* host */
     "module": "ESNext",
-    "moduleResolution": "Bundler", /** for vitest*/
+    "moduleResolution": "Bundler" /** for vitest*/,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
 
-    /** input */
+    /* input */
     "rootDir": "src",
-    "strict": true,                                      
-    "skipLibCheck": true,  
+    "strict": true,
+    "noImplicitOverride": true,
+    "skipLibCheck": true,
     "typeRoots": ["./node_modules/@types"],
     "composite": true,
 
-    /** output */
+    /* output */
     "target": "ES2022",
     "outDir": "dist",
     "declaration": true,
+    "declarationMap": true /* building for a library in a monorepo */
   },
-  "include": ["src/**/*"], 
+  "include": ["src/**/*"],
   "exclude": ["src/**/*.test.*"]
 }

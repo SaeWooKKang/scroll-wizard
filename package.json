@@ -1,16 +1,23 @@
 {
   "name": "root",
   "packageManager": "yarn@4.3.1",
-  "private": false,
   "scripts": {
+    "format": "prettier --write \"./packages/**/*.{js,jsx,ts,tsx,json,md}\"",
+    "check-format": "prettier --check \"./packages/**/*.{js,jsx,ts,tsx,json,md}\"",
+    "dev": "yarn workspace scroll-wizard dev",
+    "prepublish": "yarn ci",
+    "ci": "yarn check-format && yarn workspaces foreach --worktree run ci && yarn workspace scroll-wizard check-exports && yarn workspaces foreach --worktree run test",
     "changeset:version": "yarn changeset version",
-    "changeset:publish": "yarn changeset publish"
+    "changeset:publish": "yarn changeset publish",
+    "local-release": "yarn changeset:version && yarn changeset:publish"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.7",
+    "prettier": "^3.3.3",
     "typescript": "^5.5.3"
   }
 }
