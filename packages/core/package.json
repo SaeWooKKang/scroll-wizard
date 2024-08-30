@@ -21,7 +21,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "yarn tsc",
-    "ci": "yarn clean & yarn build",
+    "ci": "yarn clean && rm -f tsconfig.tsbuildinfo && yarn build && yarn workspace scroll-wizard check-exports && yarn workspaces foreach --worktree run test",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
     "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",

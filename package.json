@@ -6,7 +6,7 @@
     "check-format": "prettier --check \"./packages/**/*.{js,jsx,ts,tsx,json,md}\"",
     "dev": "yarn workspace scroll-wizard dev",
     "prepublish": "yarn ci",
-    "ci": "yarn check-format && yarn workspaces foreach --worktree run ci && yarn workspace scroll-wizard check-exports && yarn workspaces foreach --worktree run test",
+    "ci": "yarn check-format && yarn workspaces foreach --worktree run ci",
     "changeset:version": "yarn changeset version",
     "changeset:publish": "yarn changeset publish",
     "local-release": "yarn changeset:version && yarn changeset:publish"
