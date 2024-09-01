@@ -1,13 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, test } from 'vitest'
 import { getByText, screen } from '@testing-library/dom'
+import { scrollWizard } from './wizard'
 import {
   getPaddingRight,
   getScrollWidth,
   getDocumentScrollWidth,
   hasScrollBar,
-  scrollWizard,
   getBorderWidth,
-} from '.'
+} from './utils'
 import { VIEWPORT } from './const'
 
 beforeEach(() => {
