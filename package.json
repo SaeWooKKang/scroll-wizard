@@ -2,14 +2,14 @@
   "name": "root",
   "packageManager": "yarn@4.3.1",
   "scripts": {
-    "format": "prettier --write \"./packages/**/*.{js,jsx,ts,tsx,json,md}\"",
-    "check-format": "prettier --check \"./packages/**/*.{js,jsx,ts,tsx,json,md}\"",
-    "dev": "yarn workspace scroll-wizard dev",
-    "prepublish": "yarn ci",
     "ci": "yarn check-format && yarn workspaces foreach --worktree run ci",
+    "local-release": "yarn changeset:version && yarn changeset:publish",
+    "dev": "yarn workspace scroll-wizard dev",
+    "check-format": "prettier --check \"./packages/**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"./packages/**/*.{js,jsx,ts,tsx,json,md}\"",
+    "prepublish": "yarn ci",
     "changeset:version": "yarn changeset version",
-    "changeset:publish": "yarn changeset publish",
-    "local-release": "yarn changeset:version && yarn changeset:publish"
+    "changeset:publish": "yarn changeset publish"
   },
   "workspaces": [
     "packages/*"

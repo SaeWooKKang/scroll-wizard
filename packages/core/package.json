@@ -19,13 +19,13 @@
   },
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "yarn tsc",
-    "ci": "yarn clean && rm -f tsconfig.tsbuildinfo && yarn build && yarn workspace scroll-wizard check-exports && yarn workspaces foreach --worktree run test",
-    "test": "vitest run",
+    "ci": "yarn clean && yarn build && yarn workspace scroll-wizard check-exports && yarn test",
+    "dev": "yarn vitest",
     "coverage": "vitest run --coverage",
-    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
-    "dev": "yarn vitest"
+    "clean": "rm -rf dist",
+    "build": "rm -f tsconfig.tsbuildinfo && yarn tsc",
+    "test": "vitest run",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
