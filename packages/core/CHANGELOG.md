@@ -1,5 +1,11 @@
 # scroll-wizard
 
+## 0.1.0
+
+### Minor Changes
+
+- [`72bf9a3`](https://github.com/SaeWooKKang/scroll-wizard/commit/72bf9a3f4e0be96d410a337cb15cc44fca687b0b) Thanks [@SaeWooKKang](https://github.com/SaeWooKKang)! - Encapsulate internal functions using barrel file
+
 ## 0.0.5
 
 ### Patch Changes
