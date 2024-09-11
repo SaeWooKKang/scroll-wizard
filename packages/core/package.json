@@ -35,8 +35,8 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/deploy/index.d.ts",
+      "default": "./dist/deploy/index.js"
     }
   },
   "devDependencies": {

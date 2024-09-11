@@ -3,7 +3,7 @@ import {
   checkEnvironment,
   getScrollWidth,
   getDocumentScrollWidth,
-} from './utils'
+} from '../__internal/utils'
 
 /**
  * @summary Controls the top scroll of the document by default.

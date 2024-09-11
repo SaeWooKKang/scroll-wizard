@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitest/config'
-import { VIEWPORT } from './src/const'
+import { VIEWPORT } from './src/__internal/const'
 
 export default defineConfig({
   test: {
