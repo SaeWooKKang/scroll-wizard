@@ -1,1 +1,1 @@
-export { scrollWizard } from './wizard.js'
+export * from './deploy'
